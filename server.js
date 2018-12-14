@@ -6,7 +6,7 @@ const WebSocket = require('ws');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const INDEX = path.join(__dirname, 'index.html');
 
 const server = express()
@@ -28,9 +28,9 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
 });
 
-mediaws.on('connection', (mws) => {
+mediaws.on('open', (mws) => {
   console.log('media-ws connected');
-  mws.on('message', (data) => {
+  mediaws.on('message', (data) => {
     console.log(data);
     wss.clients.forEach((client) => {
       client.send(data);
