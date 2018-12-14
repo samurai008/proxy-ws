@@ -25,8 +25,15 @@ wss.on('connection', (ws) => {
   
   //   // client.send(new Date().toTimeString());
   // });
-  mediaws.on('message', (data) => {
-    wss.send(data);
-  })
   ws.on('close', () => console.log('Client disconnected'));
+});
+
+mediaws.on('connection', (mws) => {
+  console.log('media-ws connected');
+  mws.on('message', (data) => {
+    console.log(data);
+    wss.clients.forEach((client) => {
+      client.send(data);
+    });
+  });
 });
