@@ -2,14 +2,14 @@
   <body>
     <p id='server-time'></p>
     <script>
-      // var HOST = location.origin.replace(/^http/, 'ws')
-      // console.log(HOST);
-      // var ws = new WebSocket(HOST);
-      // var el = document.getElementById('server-time');
+      var HOST = location.origin.replace(/^http/, 'ws')
+      console.log(HOST);
+      var ws = new WebSocket(HOST);
+      var el = document.getElementById('server-time');
 
-      // ws.onmessage = function (event) {
-      //   console.log(event.data);
-      // };
+      ws.onmessage = function (event) {
+        console.log(event.data);
+      };
     </script>
   </body>
 </html>

@@ -18,11 +18,15 @@ const mediaws = new WebSocket('ws://stocks.mnet.website');
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  wss.clients.forEach((client) => {
-    mediaws.on('message', (data) => {
-      client.send(data);
-    });
-    // client.send(new Date().toTimeString());
-  });
+  // wss.clients.forEach((client) => {
+  //   mediaws.on('message', (data) => {
+  //     client.send(data);
+  //   });
+  
+  //   // client.send(new Date().toTimeString());
+  // });
+  mediaws.on('message', (data) => {
+    wss.send(data);
+  })
   ws.on('close', () => console.log('Client disconnected'));
 });
